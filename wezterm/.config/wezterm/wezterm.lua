@@ -6,7 +6,7 @@ local config = wezterm.config_builder()
 
 -- fonts
 config.font = wezterm.font("Hack Nerd Font")
-config.font_size = 18
+config.font_size = 14
 
 -- colorschemes
 local nord = wezterm.color.get_builtin_schemes()["Nord (Gogh)"]
@@ -20,14 +20,14 @@ config.color_scheme = "Custom Nord"
 config.window_background_gradient = {
 	orientation = { Linear = { angle = -45.0 } },
 	colors = {
-		"#2E3440",
-		"#4c566a",
-		"#5e81ac",
-	},
+        "#232831",
+        "#3b4252",
+        "#445d7c",
+    },
 	interpolation = "Linear",
 	blend = "Rgb",
 }
-config.window_background_opacity = 0.9
+config.window_background_opacity = 1.0
 config.macos_window_background_blur = 20
 
 -- title bar and tab bar
