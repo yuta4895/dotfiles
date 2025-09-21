@@ -2,6 +2,7 @@
 
 # Starship
 eval "$(starship init zsh)"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
