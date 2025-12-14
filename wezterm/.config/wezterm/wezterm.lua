@@ -10,7 +10,7 @@ config.font_size = 14
 
 -- colorschemes
 local nord = wezterm.color.get_builtin_schemes()["Nord (Gogh)"]
-nord.foreground = "#BCC5CE"
+nord.foreground = "#C2BFB3"
 config.color_schemes = {
 	["Custom Nord"] = nord,
 }
@@ -20,9 +20,9 @@ config.color_scheme = "Custom Nord"
 config.window_background_gradient = {
 	orientation = { Linear = { angle = -45.0 } },
 	colors = {
-        "#232831",
-        "#3b4252",
-        "#445d7c",
+        "#20242B",
+        "#2B3037",
+        "#3C434E",
     },
 	interpolation = "Linear",
 	blend = "Rgb",
@@ -31,7 +31,7 @@ config.window_background_opacity = 1.0
 config.macos_window_background_blur = 20
 
 -- title bar and tab bar
-config.window_decorations = "RESIZE"
+config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
 config.colors = {
 	tab_bar = {
 		background = "#8fbcbb",
