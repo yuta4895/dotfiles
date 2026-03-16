@@ -4,7 +4,7 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-local theme = require("themes.custom_nord")
+local theme = require("themes.gruvbox")
 
 -- colors
 config.colors = theme.colors

@@ -1,0 +1,38 @@
+local M = {}
+
+-- Gruvbox (Gogh)
+M.colors = {
+  ansi = {
+    "#282828",
+    "#cc241d",
+    "#98971a",
+    "#d79921",
+    "#458588",
+    "#b16286",
+    "#689d6a",
+    "#a89984",
+  },
+  brights = {
+    "#928374",
+    "#fb4934",
+    "#b8bb26",
+    "#fabd2f",
+    "#83a598",
+    "#d3869b",
+    "#8ec07c",
+    "#ebdbb2",
+  },
+  cursor_bg = "#ebdbb2",
+  cursor_border = "#ebdbb2",
+  cursor_fg = "#282828",
+  background = "#282828",
+  foreground = "#ebdbb2",
+  selection_bg = "#665c54",
+  selection_fg = "#ebdbb2",
+  indexed = {},
+}
+
+M.background_opacity = 1.0
+M.macos_window_background_blur = 20
+
+return M
