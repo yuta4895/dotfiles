@@ -1,25 +1,15 @@
 return {
-  "mason-org/mason-lspconfig.nvim",
+  "mason-org/mason.nvim",
   opts = {
-    ensure_installed = {
-      "lua_ls",
-      "pyright"
-    },
-    automatic_enable = true,
+    ui = {
+      icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗"
+      }
+    }
   },
-  dependencies = {
-    {
-      "mason-org/mason.nvim",
-      opts = {
-        ui = {
-          icons = {
-              package_installed = "✓",
-              package_pending = "➜",
-              package_uninstalled = "✗"
-          }
-        }
-      },
-    },
-    "neovim/nvim-lspconfig",
-  },
+  cmd = "Mason",
+  keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "mason" } },
+  build = ":MasonUpdate", 
 }
