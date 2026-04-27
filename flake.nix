@@ -12,9 +12,17 @@
   outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager }: {
     # $ darwin-rebuild switch --flake .#YutaMBP
     darwinConfigurations."YutaMBP" = nix-darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
       specialArgs = { inherit self; };
       modules = [
         ./nix/hosts/darwin
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit self; };
+          home-manager.users.yuta = ./nix/home/yuta/home.nix;
+        }
       ];
     };
   };
