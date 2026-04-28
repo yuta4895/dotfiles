@@ -1,7 +1,6 @@
-{ pkgs, self, ...}: {
+{ pkgs, self, ... }: {
   home.username = "yuta";
   home.homeDirectory = "/Users/yuta";
-
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
@@ -9,4 +8,8 @@
     fd
     tree
   ];
+
+  programs.bat = {
+    enable = true;
+  };
 }
