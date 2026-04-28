@@ -15,7 +15,7 @@
 
   programs.zsh = {
     enable = true;
-    initExtra = ''
+    initContent = ''
       _fzf_compgen_path() {
         fd --hidden --follow --exclude ".git" . "$1"
       }
@@ -59,7 +59,7 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
-      format = ''$directory''${custom.git_indicator}  $git_branch$git_status$line_break$character'';
+      format = "$directory\${custom.git_indicator}  $git_branch$git_status$line_break$character";
       add_newline = true;
       palette = "gruvbox";
 
@@ -69,15 +69,15 @@
         truncate_to_repo = false;
         substitutions = {
           "Documents" = "󰈙";
-          "Downloads" = " ";
-          "Music" = " ";
-          "Pictures" = " ";
+          "Downloads" = "";
+          "Music" = "";
+          "Pictures" = "";
         };
       };
 
       custom.git_indicator = {
         when = "git rev-parse --is-inside-work-tree 2>/dev/null";
-        command = ''echo ""'';
+        command = ''echo ""'';
         format = "[$output]($style)";
         style = "bold fg:git_color";
       };
@@ -85,16 +85,16 @@
       git_branch = {
         style = "fg:git_color";
         always_show_remote = true;
-        symbol = " ";
+        symbol = " ";
         format = "[$symbol$branch(:$remote_branch)]($style)";
       };
 
       git_status = {
         style = "fg:git_color";
         format = '' [\($all_status$ahead_behind\)]($style)'';
-        ahead = "⇡''${count}";
-        diverged = "⇕⇡''${ahead_count}⇣''${behind_count}";
-        behind = "⇣''${count}";
+        ahead = "⇡\${count}";
+        diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
+        behind = "⇣\${count}";
         up_to_date = "✓";
       };
 
