@@ -8,6 +8,10 @@
   };
 
   home.packages = with pkgs; [
+    ripgrep
+    jq
+    wget
+    eza
     git
     fd
     tree
