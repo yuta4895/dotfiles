@@ -3,6 +3,10 @@
   home.homeDirectory = "/Users/yuta";
   home.stateVersion = "25.11";
 
+  home.sessionVariables = {
+    LANG = "en_US.UTF-8";
+  };
+
   home.packages = with pkgs; [
     git
     fd
@@ -15,6 +19,10 @@
 
   programs.zsh = {
     enable = true;
+    profileExtra = ''
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+      [[ -f ~/.zprofile.local ]] && source ~/.zprofile.local
+    '';
     initContent = ''
       _fzf_compgen_path() {
         fd --hidden --follow --exclude ".git" . "$1"
@@ -22,6 +30,7 @@
       _fzf_compgen_dir() {
         fd --type d --hidden --follow --exclude ".git" . "$1"
       }
+      [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
     '';
   };
 
