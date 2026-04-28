@@ -23,6 +23,12 @@
 
   programs.zsh = {
     enable = true;
+    shellAliases = {
+      ls = "eza";
+      ll = "eza -l";
+      la = "eza -a";
+      cat = "bat";
+    };
     profileExtra = ''
       eval "$(/opt/homebrew/bin/brew shellenv)"
       [[ -f ~/.zprofile.local ]] && source ~/.zprofile.local
