@@ -6,5 +6,7 @@
 
   home.packages = with pkgs; [
     git
+    fd
+    tree
   ];
 }
