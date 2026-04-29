@@ -33,6 +33,7 @@
     enable = true;
     mouse = true;
     shortcut = "s";
+    keyMode = "vi";
     extraConfig = builtins.readFile ../../config/tmux/tmux.conf;
   };
 
