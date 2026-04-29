@@ -14,6 +14,8 @@
     eza
     fd
     tree
+    rsync
+    stow
   ];
 
   programs.git = {
