@@ -33,7 +33,7 @@
     enable = true;
     mouse = true;
     shortcut = "s";
-    extraConfig = builtins.readFile .config/tmux/tmux.conf;
+    extraConfig = builtins.readFile ../../config/tmux/tmux.conf;
   };
 
   programs.bat = {

@@ -15,13 +15,13 @@
       system = "aarch64-darwin";
       specialArgs = { inherit self; };
       modules = [
-        ./nix/hosts/darwin
+        ./hosts/darwin
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit self; };
-          home-manager.users.yuta = ./nix/home/yuta/home.nix;
+          home-manager.users.yuta = ./home/yuta/home.nix;
         }
       ];
     };
