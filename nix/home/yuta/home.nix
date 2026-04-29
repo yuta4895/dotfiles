@@ -12,10 +12,20 @@
     jq
     wget
     eza
-    git
     fd
     tree
   ];
+
+  programs.git = {
+    enable = true;
+    settings = {
+      user = {
+        name = "yuta";
+        email = "127702675+yuta4895@users.noreply.github.com";
+      };
+      init.defaultBranch = "main";
+    };
+  };
 
   programs.bat = {
     enable = true;
@@ -27,7 +37,6 @@
       ls = "eza";
       ll = "eza -l";
       la = "eza -a";
-      cat = "bat";
     };
     profileExtra = ''
       eval "$(/opt/homebrew/bin/brew shellenv)"
