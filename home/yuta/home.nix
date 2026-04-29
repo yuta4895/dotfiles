@@ -16,6 +16,7 @@
     tree
     rsync
     stow
+    neovim
   ];
 
   programs.git = {
@@ -153,4 +154,5 @@
   };
 
   xdg.configFile."wezterm".source = ../../config/wezterm;
+  xdg.configFile."nvim".source = ../../config/nvim;
 }
