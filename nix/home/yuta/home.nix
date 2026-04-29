@@ -29,6 +29,13 @@
     };
   };
 
+  programs.tmux = {
+    enable = true;
+    mouse = true;
+    shortcut = "s";
+    extraConfig = builtins.readFile .config/tmux/tmux.conf;
+  };
+
   programs.bat = {
     enable = true;
   };
