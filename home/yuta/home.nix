@@ -42,6 +42,14 @@
     };
   };
 
+  programs.gh = {
+    enable = true;
+    settings = {
+      git_protocol = "ssh";
+      prompt = "enabled";
+    };
+  }
+
   programs.tmux = {
     enable = true;
     mouse = true;
