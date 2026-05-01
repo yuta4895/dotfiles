@@ -25,5 +25,34 @@
     name = "yuta";
     home = "/Users/yuta";
   };
+
+  homebrew = {
+    enable = true;
+    enableZshIntegration = true;
+    user = "yuta";
+    onActivation = {
+      cleanup = "zap";
+      autoUpdate = true;
+      upgrade = true;
+    };
+    casks = [
+      "google-chrome"
+      "firefox"
+      "slack"
+      "zoom"
+      "skim"
+      "obsiian"
+      "zotero"
+      "raycast"
+      "wezterm"
+      "visual-studio-code"
+      "intellij-idea"
+      "claude-code"
+      "copilot-cli"
+      "chat-gpt"
+      "font-hack-nerd-font"
+      "xquartz"
+    ];
+  };
 }
 
