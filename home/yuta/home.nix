@@ -19,6 +19,18 @@
     neovim
   ];
 
+  programs.ssh = {
+    enable = true;
+    includes = [ "~/.ssh/config_local" ];
+    matchBlocks = {
+      "github.com" = {
+        addKeysToAgent = "yes";
+        identityFile = "~/.ssh/id_ed25519";
+        extraOptions.UseKeychain = "yes";
+      };
+    };
+  };
+
   programs.git = {
     enable = true;
     settings = {
