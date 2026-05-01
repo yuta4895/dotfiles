@@ -11,12 +11,12 @@
     ripgrep
     jq
     wget
-    eza
     fd
     tree
     rsync
     stow
     neovim
+    ghq
   ];
 
   programs.ssh = {
@@ -58,13 +58,27 @@
     extraConfig = builtins.readFile ../../config/tmux/tmux.conf;
   };
 
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+    icons = "auto";
+    git = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   programs.zsh = {
     enable = true;
-    shellAliases = {
-      ls = "eza";
-      ll = "eza -l";
-      la = "eza -a";
-    };
+    shellAliases = {};
     profileExtra = ''
       eval "$(/opt/homebrew/bin/brew shellenv)"
       [[ -f ~/.zprofile.local ]] && source ~/.zprofile.local
