@@ -48,7 +48,7 @@
       git_protocol = "ssh";
       prompt = "enabled";
     };
-  }
+  };
 
   programs.tmux = {
     enable = true;
@@ -70,11 +70,12 @@
     enableZshIntegration = true;
   };
 
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    nix-direnv.enable = true;
-  };
+# broken
+#  programs.direnv = {
+#    enable = true;
+#    enableZshIntegration = true;
+#    nix-direnv.enable = true;
+#  };
 
   programs.zsh = {
     enable = true;
