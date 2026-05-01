@@ -21,7 +21,6 @@
 
   programs.ssh = {
     enable = true;
-    includes = [ "~/.ssh/config_local" ];
     matchBlocks = {
       "github.com" = {
         addKeysToAgent = "yes";
@@ -29,6 +28,9 @@
         extraOptions.UseKeychain = "yes";
       };
     };
+    extraConfig = ''
+      Include ~/.ssh/config_lab
+    '';
   };
 
   programs.git = {
