@@ -50,10 +50,6 @@
     extraConfig = builtins.readFile ../../config/tmux/tmux.conf;
   };
 
-  programs.bat = {
-    enable = true;
-  };
-
   programs.zsh = {
     enable = true;
     shellAliases = {
@@ -104,6 +100,10 @@
       "--color header:italic"
       "--header 'Press CTRL-Y to copy command into clipboard'"
     ];
+  };
+
+  programs.bat = {
+    enable = true;
   };
 
   programs.starship = {
