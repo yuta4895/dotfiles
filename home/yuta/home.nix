@@ -20,7 +20,7 @@
   ];
 
   programs.ssh = {
-    enable = true;
+    enable = false;
     enableDefaultConfig = false;
   };
 
