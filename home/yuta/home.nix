@@ -21,16 +21,7 @@
 
   programs.ssh = {
     enable = true;
-    matchBlocks = {
-      "github.com" = {
-        addKeysToAgent = "yes";
-        identityFile = "~/.ssh/id_ed25519";
-        extraOptions.UseKeychain = "yes";
-      };
-    };
-    extraConfig = ''
-      Include ~/.ssh/config_lab
-    '';
+    enableDefaultConfig = false;
   };
 
   programs.git = {
@@ -41,6 +32,10 @@
         email = "127702675+yuta4895@users.noreply.github.com";
       };
       init.defaultBranch = "main";
+      ghq.root = "~/dev";
+      url."git@github.com:" = {
+      insteadOf = "https://github.com/";
+    };
     };
   };
 
