@@ -41,7 +41,7 @@
       "slack"
       "zoom"
       "skim"
-      "obsiian"
+      "obsidian"
       "zotero"
       "raycast"
       "wezterm"
@@ -49,7 +49,7 @@
       "intellij-idea"
       "claude-code"
       "copilot-cli"
-      "chat-gpt"
+      "chatgpt"
       "font-hack-nerd-font"
       "xquartz"
     ];
