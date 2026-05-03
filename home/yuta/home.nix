@@ -1,4 +1,4 @@
-{ pkgs, self, ... }: {
+{ pkgs, config, self, ... }: {
   home.username = "yuta";
   home.homeDirectory = "/Users/yuta";
   home.stateVersion = "25.11";
@@ -194,5 +194,9 @@
   };
 
   xdg.configFile."wezterm".source = ../../config/wezterm;
-  xdg.configFile."nvim".source = ../../config/nvim;
+
+  # lazy.nvim writes to the config dir (lazy-lock.json, plugin state), so it must be
+  # a mutable out-of-store symlink rather than a read-only nix store path.
+  # Requires this repo to be cloned at ~/dev/github.com/yuta4895 (use ghq).
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/github.com/yuta4895/dotfiles/nvim";
 }

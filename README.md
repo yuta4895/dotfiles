@@ -26,12 +26,18 @@ config/
 ## Apply changes
 
 ```sh
+# This repository must be cloned at ~/dev/github.com/yuta4895/dotfiles.
+# The nvim config uses mkOutOfStoreSymlink which hardcodes this absolute path,
+# allowing lazy.nvim to write back to the repo (lazy-lock.json, plugin state).
+mkdir -p ~/dev/github.com/yuta4895 && cd ~/dev/github.com/yuta4895
+git clone git@github.com:yuta4895/dotfiles.git
 # Run this for the first time
 nix run nix-darwin/master#darwin-rebuild -- build --flake .#YutaMBP
 sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#YutaMBP
 ```
 
 ```sh
+ghq get git@github.com:yuta4895/dotfiles.git
 darwin-rebuild build --flake .
 darwin-rebuild switch --flake .#YutaMBP
 ```
