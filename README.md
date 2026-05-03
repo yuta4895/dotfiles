@@ -26,6 +26,12 @@ config/
 ## Apply changes
 
 ```sh
+# Run this for the first time
+nix run nix-darwin/master#darwin-rebuild -- build --flake .#YutaMBP
+sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#YutaMBP
+```
+
+```sh
 darwin-rebuild build --flake .
 darwin-rebuild switch --flake .#YutaMBP
 ```
@@ -38,4 +44,4 @@ Files sourced if present — not tracked in this repo:
 |---|---|
 | `~/.zprofile.local` | Machine-specific env vars |
 | `~/.zshrc.local` | Machine-specific interactive shell config |
-| `~/.ssh/config`   | SSH config |
+| `~/.ssh/config`   | SSH config                                |
