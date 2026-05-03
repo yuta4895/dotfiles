@@ -1,44 +1,69 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Overview
 
-Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/). Each top-level directory (`nvim`, `tmux`, `wezterm`, `starship`, `zsh`, `nix`) mirrors the structure under `$HOME`, so `stow <tool>` from the repo root creates symlinks.
+Personal dotfiles managed with [nix-darwin](https://github.com/nix-darwin/nix-darwin) and [home-manager](https://github.com/nix-community/home-manager) on macOS (aarch64-darwin, host `YutaMBP`).
 
-## Applying configs
+## Apply changes
 
 ```sh
-# Symlink a single tool's config
-stow nvim
-
-# Remove symlinks
-stow -D nvim
+darwin-rebuild switch --flake .#YutaMBP
 ```
+
+## Structure
+
+```
+flake.nix              # Entry point — inputs and darwinConfigurations
+hosts/darwin/          # nix-darwin system config
+home/yuta/home.nix     # home-manager user config
+config/
+  tmux/tmux.conf       # sourced via builtins.readFile in home.nix
+  wezterm/             # symlinked to ~/.config/wezterm via xdg.configFile
+  nvim/                # symlinked to ~/.config/nvim via xdg.configFile
+```
+
+## Nix architecture
+
+**`flake.nix`** — declares inputs (`nixpkgs-unstable`, `nix-darwin`, `home-manager`) and wires them together. `home-manager` runs as a nix-darwin module with `useGlobalPkgs` and `useUserPackages` enabled.
+
+**`hosts/darwin/default.nix`** — system-level config: `environment.systemPackages`, `nix.settings`, `programs.zsh.enable`, `users.users.yuta`.
+
+**`home/yuta/home.nix`** — user-level config via home-manager. Programs configured here (selection):
+- `programs.zsh` — shell with `profileExtra` (Homebrew init, `.zprofile.local`) and `initContent` (`_fzf_compgen_*`, `.zshrc.local`)
+- `programs.fzf` — all `FZF_*` env vars and zsh integration
+- `programs.starship` — prompt config inlined as `settings` attrset (no external TOML)
+- `programs.tmux` — config sourced from `config/tmux/tmux.conf` via `builtins.readFile`
+- `programs.git` / `programs.gh` — git identity, default branch, ghq root, SSH URL rewrite
+- `programs.ssh` — disabled (`enable = false`); SSH config managed separately
+- `programs.eza` — replaces `ls` with icons and git status via zsh integration
+- `programs.zoxide` — `z` command with zsh integration
+- `xdg.configFile."wezterm"` / `xdg.configFile."nvim"` — directory symlinks into `~/.config/`
 
 ## Neovim architecture
 
-Entry point: `nvim/.config/nvim/init.lua` loads three modules in order:
+Config lives at `config/nvim/`, symlinked to `~/.config/nvim` by home-manager.
 
-1. `config.options` — global options
-2. `config.keymaps` — global keymaps
-3. `core.lazy` — bootstraps and configures lazy.nvim, then imports all files from `lua/plugins/`
+Entry point `init.lua` loads in order:
+1. `config.options` — `vim.opt` settings
+2. `config.keymaps` — global keymaps (`jk` → `<ESC>`, leader = `<Space>`)
+3. `core.lazy` — bootstraps lazy.nvim, then imports all files from `lua/plugins/`
 
-Each file in `lua/plugins/` returns a lazy.nvim plugin spec.
-
-Key plugins and their roles:
-- **snacks.nvim** (`plugins/snacks.lua`) — picker (file/grep/buffer search), explorer, dashboard, notifier, and many UI utilities. Most `<leader>` keymaps route through Snacks.
-- **nvim-lspconfig + mason** (`plugins/lsp.lua`, `plugins/mason.lua`) — LSP setup; mason auto-installs `lua_ls` and `pyright`. LSP keymaps (`gd`, `gr`, `K`, `<leader>ca`, etc.) are registered via `Snacks.keymap.set`.
-- **oil.nvim** (`plugins/oil.lua`) — file manager replacing netrw; `-` opens parent directory. `C-h/j/k/l` disabled to avoid tmux navigator conflicts.
-- **claudecode.nvim** (`plugins/ai.lua`) — Claude Code integration; auto-starts, no terminal UI. `<leader>a` prefix for AI actions.
-- **vim-tmux-navigator** — seamless `C-h/j/k/l` navigation between nvim splits and tmux panes.
-
-## Shell
-
-`zsh/.zprofile` — environment variables, Homebrew init, sources `~/.zprofile.local` for machine-specific env.
-
-`zsh/.zshrc` — interactive config: Starship prompt, fzf bindings (using `fd` as backend), sources `~/.zshrc.local` for machine-specific interactive settings.
+Each file in `lua/plugins/` returns a lazy.nvim plugin spec. Key plugins:
+- **snacks.nvim** — picker, explorer, dashboard, notifier. Most `<leader>` keymaps route through Snacks.
+- **nvim-lspconfig + mason** — LSP; mason auto-installs `lua_ls` and `pyright`. Keymaps (`gd`, `gr`, `K`, `<leader>ca`) registered via `Snacks.keymap.set`.
+- **oil.nvim** — file manager; `-` opens parent dir. `C-h/j/k/l` disabled to avoid tmux navigator conflicts.
+- **claudecode.nvim** — Claude Code integration; auto-starts, no terminal UI. `<leader>a` prefix.
+- **vim-tmux-navigator** — `C-h/j/k/l` navigation across nvim splits and tmux panes.
 
 ## tmux
 
-Prefix is `C-s`. Pane splits: `|` (horizontal), `-` (vertical). `C-h/j/k/l` handled by vim-tmux-navigator integration.
+Prefix is `C-s`. Splits: `|` (horizontal), `-` (vertical). Pane navigation via vim-tmux-navigator (`C-h/j/k/l`). Config at `config/tmux/tmux.conf` — changes require `darwin-rebuild switch` to take effect.
+
+## Machine-local overrides
+
+Not tracked in this repo — sourced if present:
+- `~/.zprofile.local` — machine-specific env vars
+- `~/.zshrc.local` — machine-specific interactive shell config
+- `~/.ssh/config` — SSH config
