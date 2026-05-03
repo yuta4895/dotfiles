@@ -17,6 +17,14 @@
     stow
     neovim
     ghq
+
+    nodejs_24
+    pnpm
+    deno
+    uv
+    gcc
+    gnumake
+    go
   ];
 
   programs.ssh = {
