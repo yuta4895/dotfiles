@@ -25,6 +25,8 @@
     gcc
     gnumake
     go
+
+    tree-sitter
   ];
 
   programs.ssh = {
