@@ -47,6 +47,7 @@
       "wezterm"
       "visual-studio-code"
       "intellij-idea"
+      "docker-desktop"
       "claude-code"
       "copilot-cli"
       "chatgpt"
