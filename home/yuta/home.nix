@@ -140,7 +140,7 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
-      format = "$directory\${custom.git_indicator}  $git_branch$git_status$line_break$character";
+      format = "$directory$git_branch$git_status$line_break$character";
       add_newline = true;
       palette = "gruvbox";
 
@@ -156,17 +156,10 @@
         };
       };
 
-      custom.git_indicator = {
-        when = "git rev-parse --is-inside-work-tree 2>/dev/null";
-        command = ''echo ""'';
-        format = "[$output]($style)";
-        style = "bold fg:git_color";
-      };
-
       git_branch = {
         style = "fg:git_color";
         always_show_remote = true;
-        symbol = " ";
+        symbol = "on  ";
         format = "[$symbol$branch(:$remote_branch)]($style)";
       };
 
