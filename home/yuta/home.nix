@@ -140,7 +140,7 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
-      format = "$directory$git_branch$git_status$line_break$character";
+      format = "$directory$git_branch$git_status$nix_shell$line_break$character";
       add_newline = true;
       palette = "gruvbox";
 
@@ -172,6 +172,12 @@
         up_to_date = "✓";
       };
 
+      nix_shell = {
+        style = "fd:nix_color";
+        symbol = "❄️ ";
+        format = ''via [$symbol$state( \($name\))]($style) '';
+      };
+
       character = {
         success_symbol = "[➜](bold green)";
         error_symbol = "[➜](bold red)";
@@ -180,10 +186,12 @@
       palettes.nord = {
         dir_color = "#5E81AC";
         git_color = "#B48EAD";
+        nix_color = "#5E81AC";
       };
       palettes.gruvbox = {
         dir_color = "#d79921";
         git_color = "#fe8019";
+        nix_color = "#458588";
       };
     };
   };
