@@ -17,6 +17,7 @@
     stow
     neovim
     ghq
+    just
 
     nodejs_24
     pnpm
