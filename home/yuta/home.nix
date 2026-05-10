@@ -26,6 +26,7 @@
     gcc
     gnumake
     go
+    luarocks
 
     tree-sitter
   ];
