@@ -1,11 +1,13 @@
 return {
   'saghen/blink.cmp',
   dependencies = {
+    { 'giuxtaposition/blink-cmp-copilot', dependencies = { 'zbirenbaum/copilot.lua' } },
     'saghen/blink.lib',
     -- optional: provides snippets for the snippet source
     'rafamadriz/friendly-snippets',
   },
   version = "*",
+  event = "InsertEnter",
     ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
@@ -28,7 +30,17 @@ return {
 
     -- (Default) list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
-    sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
+    sources = {
+      default = { "lsp", "path", "snippets", "buffer", "copilot" },
+      providers = {
+        copilot = {
+          name = "copilot",
+          module = "blink-cmp-copilot",
+          score_offset = 100,
+          async = true,
+        },
+      },
+    },
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
     -- You may use a lua implementation instead by using `implementation = "lua"`

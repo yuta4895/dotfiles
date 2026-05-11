@@ -24,5 +24,14 @@ return {
         provider = "none", -- no UI actions; server + tools remain available
       },
     },
-  }
+  },
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
+    opts = {
+      suggestion = { enabled = false }, -- disable inline suggestions
+      panel = { enabled = false },
+    },
+  },
 }
