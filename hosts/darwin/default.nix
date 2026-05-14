@@ -54,6 +54,7 @@
       "claude-code"
       "copilot-cli"
       "chatgpt"
+      "google-gemini"
       "font-hack-nerd-font"
       "xquartz"
     ];
