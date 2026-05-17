@@ -1,0 +1,116 @@
+# https://editorconfig.org
+root = true
+
+# ── Global defaults ───────────────────────────────────────────────────────────
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# ── JavaScript / TypeScript ───────────────────────────────────────────────────
+# Prettier default: 2 spaces, 80 cols
+[*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}]
+indent_size = 2
+max_line_length = 80
+
+# ── Python ────────────────────────────────────────────────────────────────────
+# RUff default: 4 spaces, 88 cols
+[*.{py,pyi}]
+indent_size = 4
+max_line_length = 88
+
+# ── Go ────────────────────────────────────────────────────────────────────────
+# gofmt enforces tabs
+[*.go]
+indent_style = tab
+tab_width = 4
+
+# ── Lua ───────────────────────────────────────────────────────────────────────
+# Neovim / LuaRocks community standard: 2 spaces
+[*.lua]
+indent_size = 2
+
+# ── Nix ───────────────────────────────────────────────────────────────────────
+# nixpkgs style guide: 2 spaces
+[*.nix]
+indent_size = 2
+
+# ── C / C++ ───────────────────────────────────────────────────────────────────
+# Google C++ style: 80 cols; 2 spaces
+[*.{c,h,cpp,hpp,cc,hh,cxx,hxx}]
+indent_size = 2
+max_line_length = 80
+
+# ── Java ──────────────────────────────────────────────────────────────────────
+# Google Java Style Guide: 4 spaces, 100 cols
+[*.java]
+indent_size = 4
+max_line_length = 100
+
+# ── Kotlin ────────────────────────────────────────────────────────────────────
+# Kotlin coding conventions: 4 spaces, 100 cols
+[*.{kt,kts}]
+indent_size = 4
+max_line_length = 100
+
+# ── Shell ─────────────────────────────────────────────────────────────────────
+# Google Shell Style Guide: 2 spaces, 80 cols
+[*.{sh,bash,zsh}]
+indent_size = 2
+max_line_length = 80
+
+# ── Makefile ──────────────────────────────────────────────────────────────────
+# make requires hard tabs for recipe lines
+[{Makefile,makefile,GNUmakefile,*.mk}]
+indent_style = tab
+tab_width = 4
+
+# ── HTML ──────────────────────────────────────────────────────────────────────
+# W3C / Prettier default: 2 spaces
+[*.{html,htm}]
+indent_size = 2
+
+# ── CSS / SCSS / Less ─────────────────────────────────────────────────────────
+# Prettier default: 2 spaces
+[*.{css,scss,less}]
+indent_size = 2
+
+# ── JSON ──────────────────────────────────────────────────────────────────────
+# Prettier default: 2 spaces
+[*.{json,jsonc,json5}]
+indent_size = 2
+
+# ── YAML ──────────────────────────────────────────────────────────────────────
+# YAML spec recommends 2 spaces
+[*.{yaml,yml}]
+indent_size = 2
+
+# ── TOML ──────────────────────────────────────────────────────────────────────
+[*.toml]
+indent_size = 2
+
+# ── XML ───────────────────────────────────────────────────────────────────────
+[*.{xml,xsd,xsl,pom}]
+indent_size = 2
+
+# ── Markdown ──────────────────────────────────────────────────────────────────
+# trailing spaces = <br> in CommonMark — do not trim
+[*.{md,mdx,markdown}]
+indent_size = 2
+trim_trailing_whitespace = false
+
+# ── reStructuredText ──────────────────────────────────────────────────────────
+[*.rst]
+indent_size = 3
+
+# ── Dockerfile ────────────────────────────────────────────────────────────────
+# No official standard; 4 spaces is the most common convention
+[{Dockerfile,*.dockerfile,Containerfile,*.containerfile}]
+indent_size = 4
+
+# ── Git ───────────────────────────────────────────────────────────────────────
+[{.gitignore,.gitattributes,.gitmodules}]
+indent_size = 2

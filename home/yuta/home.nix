@@ -201,6 +201,8 @@
     };
   };
 
+  home.file.".editorconfig".source = ../../config/editorconfig/.editorconfig;
+
   xdg.configFile."wezterm".source = ../../config/wezterm;
 
   # lazy.nvim writes to the config dir (lazy-lock.json, plugin state), so it must be
