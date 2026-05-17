@@ -40,11 +40,14 @@
     enable = true;
     settings = {
       user = {
-        name = "yuta";
+        name = "yuta4895";
         email = "127702675+yuta4895@users.noreply.github.com";
       };
       init.defaultBranch = "main";
-      ghq.root = "~/dev";
+      ghq = {
+        root = "~/dev";
+        user = "yuta4895";
+      };
       url."git@github.com:" = {
       insteadOf = "https://github.com/";
     };
