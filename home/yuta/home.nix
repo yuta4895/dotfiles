@@ -91,7 +91,22 @@
 
   programs.zsh = {
     enable = true;
-    shellAliases = {};
+    shellAliases = {
+      gs  = "git status";
+      ga  = "git add";
+      gaa = "git add -A";
+      gc  = "git commit";
+      gcm = "git commit -m";
+      gp  = "git push";
+      gl  = "git pull";
+      gd  = "git diff";
+      gds = "git diff --staged";
+      gdh = "git diff HEAD";
+      gsw = "git switch";
+      gsc = "git switch -c";
+      gb  = "git branch";
+      glg = "git log --oneline --graph --decorate --all";
+    };
     profileExtra = ''
       eval "$(/opt/homebrew/bin/brew shellenv)"
       [[ -f ~/.zprofile.local ]] && source ~/.zprofile.local
