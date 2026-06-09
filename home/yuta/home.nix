@@ -14,18 +14,24 @@
     fd
     tree
     rsync
-    stow
     neovim
     ghq
     just
 
+    awscli2
+
     nodejs_24
     pnpm
     deno
+
     uv
+    python312
+
     gcc
     gnumake
+
     go
+
     luarocks
 
     tree-sitter
@@ -62,6 +68,11 @@
     };
   };
 
+  programs.lazygit = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.tmux = {
     enable = true;
     mouse = true;
@@ -82,12 +93,11 @@
     enableZshIntegration = true;
   };
 
-# broken
-#  programs.direnv = {
-#    enable = true;
-#    enableZshIntegration = true;
-#    nix-direnv.enable = true;
-#  };
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
 
   programs.zsh = {
     enable = true;
