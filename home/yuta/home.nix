@@ -195,7 +195,7 @@
 
       git_status = {
         style = "fg:git_color";
-        format = '' [\($all_status$ahead_behind\)]($style)'';
+        format = '' [\($all_status$ahead_behind\) ]($style)'';
         ahead = "⇡\${count}";
         diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
         behind = "⇣\${count}";
@@ -203,9 +203,9 @@
       };
 
       nix_shell = {
-        style = "fd:nix_color";
+        style = "fg:nix_color";
         symbol = "❄️ ";
-        format = ''via [$symbol$state( \($name\))]($style) '';
+        format = ''[via $symbol$state( \($name\))]($style) '';
       };
 
       character = {
