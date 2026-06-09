@@ -42,6 +42,40 @@ darwin-rebuild build --flake .
 darwin-rebuild switch --flake .#YutaMBP
 ```
 
+## Update inputs
+
+Update all pinned inputs (`nixpkgs`, `nix-darwin`, `home-manager`) to their latest commits, then apply:
+
+```sh
+nix flake update
+darwin-rebuild switch --flake .#YutaMBP
+```
+
+To update a single input only:
+
+```sh
+nix flake update nixpkgs
+```
+
+Commit `flake.lock` after updating so the pinned versions are tracked in git.
+
+## Garbage collection
+
+The Nix store grows over time. Clean up periodically:
+
+```sh
+# Remove unreferenced store paths — keeps all generations (rollback still works)
+nix-collect-garbage
+sudo nix-collect-garbage
+
+# Remove all old generations AND unreferenced store paths — frees much more space
+# Warning: darwin-rebuild rollback will no longer work after this
+nix-collect-garbage -d
+sudo nix-collect-garbage -d
+```
+
+Both user and sudo variants are needed because each user has their own GC roots.
+
 ## Machine-local overrides
 
 Files sourced if present — not tracked in this repo:
