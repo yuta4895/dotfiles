@@ -34,7 +34,7 @@
     enableZshIntegration = true;
     user = "yuta";
     onActivation = {
-      cleanup = "zap";
+      cleanup = "none";
       autoUpdate = true;
       upgrade = true;
     };
@@ -50,13 +50,13 @@
       "wezterm"
       "visual-studio-code"
       "intellij-idea"
+      "zed"
       "docker-desktop"
       "claude-code"
       "copilot-cli"
       "chatgpt"
       "google-gemini"
       "font-hack-nerd-font"
-      "xquartz"
     ];
   };
 }
