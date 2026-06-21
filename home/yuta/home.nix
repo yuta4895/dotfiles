@@ -18,6 +18,7 @@
     ghq
     just
 
+    opentofu
     awscli2
 
     nodejs_24
@@ -116,6 +117,21 @@
       gsc = "git switch -c";
       gb  = "git branch";
       glg = "git log --oneline --graph --decorate --all";
+
+      tf    = "tofu";
+      tfi   = "tofu init";
+      tfp   = "tofu plan";
+      tfa   = "tofu apply";
+      tfaa  = "tofu apply -auto-approve";
+      tfd   = "tofu destroy";
+      tfda  = "tofu destroy -auto-approve";
+      tffmt = "tofu fmt -recursive";
+      tfv   = "tofu validate";
+      tfo   = "tofu output";
+      tfs   = "tofu state";
+      tfwl  = "tofu workspace list";
+      tfws  = "tofu workspace select";
+      tfwn  = "tofu workspace new";
     };
     profileExtra = ''
       eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -128,6 +144,7 @@
       _fzf_compgen_dir() {
         fd --type d --hidden --follow --exclude ".git" . "$1"
       }
+      complete -o nospace -C tofu tofu
       [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
     '';
   };
