@@ -1,0 +1,6 @@
+[keys]
+prefix = "ctrl+s"
+
+[theme]
+name = "gruvbox"
+
