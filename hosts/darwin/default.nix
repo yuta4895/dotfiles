@@ -36,7 +36,7 @@
     onActivation = {
       cleanup = "none";
       autoUpdate = true;
-      upgrade = true;
+      upgrade = false;
     };
     casks = [
       "google-chrome"
