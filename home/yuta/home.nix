@@ -1,4 +1,4 @@
-{ pkgs, config, self, ... }: {
+{ pkgs, config, self, inputs, ... }: {
   home.username = "yuta";
   home.homeDirectory = "/Users/yuta";
   home.stateVersion = "25.11";
@@ -36,6 +36,10 @@
     luarocks
 
     tree-sitter
+
+    ollama
+
+    inputs.herdr.packages.${pkgs.system}.default
   ];
 
   programs.ssh = {
