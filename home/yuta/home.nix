@@ -138,6 +138,9 @@
       tfwn  = "tofu workspace new";
     };
     profileExtra = ''
+      # Apps relaunched by `brew upgrade` inherit brew's internal env; a stale
+      # HOMEBREW_PATH makes `brew shellenv` a no-op, leaving brew off PATH.
+      unset HOMEBREW_PATH
       eval "$(/opt/homebrew/bin/brew shellenv)"
       [[ -f ~/.zprofile.local ]] && source ~/.zprofile.local
     '';
