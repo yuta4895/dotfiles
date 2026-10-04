@@ -9,28 +9,31 @@ Personal dotfiles managed with [nix-darwin](https://github.com/nix-darwin/nix-da
 ## Apply changes
 
 ```sh
-darwin-rebuild switch --flake .#YutaMBP
+darwin-rebuild switch --flake .#YutaMBP     # personal Mac (nix-darwin + home-manager)
+home-manager switch --flake .#standalone    # other Macs (standalone home-manager)
 ```
 
 ## Structure
 
 ```
-flake.nix              # Entry point — inputs and darwinConfigurations
-hosts/darwin/          # nix-darwin system config
-home/yuta/home.nix     # home-manager user config
+flake.nix                # Entry point — inputs, darwinConfigurations, homeConfigurations
+hosts/darwin/            # nix-darwin system config
+home/yuta/common.nix     # home-manager config shared by all machines
+home/yuta/personal.nix   # personal Mac: identity, language runtimes, tofu
+home/yuta/standalone.nix # standalone home-manager: no nix-darwin, no runtimes
 config/
-  tmux/tmux.conf       # sourced via builtins.readFile in home.nix
-  wezterm/             # symlinked to ~/.config/wezterm via xdg.configFile
-  nvim/                # symlinked to ~/.config/nvim via xdg.configFile
+  tmux/tmux.conf         # sourced via builtins.readFile in common.nix
+  wezterm/               # symlinked to ~/.config/wezterm via xdg.configFile
+  nvim/                  # symlinked to ~/.config/nvim via xdg.configFile
 ```
 
 ## Nix architecture
 
-**`flake.nix`** — declares inputs (`nixpkgs-unstable`, `nix-darwin`, `home-manager`) and wires them together. `home-manager` runs as a nix-darwin module with `useGlobalPkgs` and `useUserPackages` enabled.
+**`flake.nix`** — declares inputs (`nixpkgs-unstable`, `nix-darwin`, `home-manager`) and wires them together. `home-manager` runs as a nix-darwin module with `useGlobalPkgs` and `useUserPackages` enabled. It also exposes `homeConfigurations.standalone`, a standalone home-manager config.
 
 **`hosts/darwin/default.nix`** — system-level config: `environment.systemPackages`, `nix.settings`, `programs.zsh.enable`, `users.users.yuta`.
 
-**`home/yuta/home.nix`** — user-level config via home-manager. Programs configured here (selection):
+**`home/yuta/common.nix`** — shared user-level config via home-manager. Programs configured here (selection):
 - `programs.zsh` — shell with `profileExtra` (Homebrew init, `.zprofile.local`) and `initContent` (`_fzf_compgen_*`, `.zshrc.local`)
 - `programs.fzf` — all `FZF_*` env vars and zsh integration
 - `programs.starship` — prompt config inlined as `settings` attrset (no external TOML)

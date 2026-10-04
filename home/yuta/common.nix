@@ -1,6 +1,6 @@
-{ pkgs, config, self, inputs, ... }: {
-  home.username = "yuta";
-  home.homeDirectory = "/Users/yuta";
+# Shared by every machine. Machine-specific bits (identity, runtimes) live in
+# personal.nix / standalone.nix.
+{ pkgs, config, inputs, ... }: {
   home.stateVersion = "25.11";
 
   home.sessionVariables = {
@@ -18,26 +18,9 @@
     ghq
     just
 
-    opentofu
-    awscli2
-
-    nodejs_24
-    pnpm
-    deno
-
-    uv
-    python312
-
-    gcc
-    gnumake
-
-    go
-
     luarocks
 
     tree-sitter
-
-    ollama
 
     inputs.herdr.packages.${pkgs.system}.default
   ];
@@ -59,17 +42,15 @@
         root = "~/dev";
         user = "yuta4895";
       };
-      url."git@github.com:" = {
-      insteadOf = "https://github.com/";
-    };
     };
   };
 
   programs.gh = {
     enable = true;
     settings = {
-      git_protocol = "ssh";
       prompt = "enabled";
+      editor = "nvim";
+      aliases = { co = "pr checkout"; };
     };
   };
 
@@ -121,21 +102,6 @@
       gsc = "git switch -c";
       gb  = "git branch";
       glg = "git log --oneline --graph --decorate --all";
-
-      tf    = "tofu";
-      tfi   = "tofu init";
-      tfp   = "tofu plan";
-      tfa   = "tofu apply";
-      tfaa  = "tofu apply -auto-approve";
-      tfd   = "tofu destroy";
-      tfda  = "tofu destroy -auto-approve";
-      tffmt = "tofu fmt -recursive";
-      tfv   = "tofu validate";
-      tfo   = "tofu output";
-      tfs   = "tofu state";
-      tfwl  = "tofu workspace list";
-      tfws  = "tofu workspace select";
-      tfwn  = "tofu workspace new";
     };
     profileExtra = ''
       # Apps relaunched by `brew upgrade` inherit brew's internal env; a stale
@@ -151,7 +117,6 @@
       _fzf_compgen_dir() {
         fd --type d --hidden --follow --exclude ".git" . "$1"
       }
-      complete -o nospace -C tofu tofu
       [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
     '';
   };
