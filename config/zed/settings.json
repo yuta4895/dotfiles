@@ -1,0 +1,95 @@
+{
+  "diff_view_style": "split",
+  "project_panel": {
+    "dock": "right",
+  },
+  "outline_panel": {
+    "dock": "right",
+  },
+  "collaboration_panel": {
+    "dock": "right",
+  },
+  "agent": {
+    "dock": "left",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "git_panel": {
+    "dock": "right",
+  },
+  "ssh_connections": [
+    {
+      "host": "urbanclimserver",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/yuta/geo-lens"
+          ]
+        },
+        {
+          "paths": [
+            "/var/www/cdx-view"
+          ]
+        }
+      ],
+      "port_forwards": [
+        {
+          "local_port": 8001,
+          "remote_port": 8001
+        },
+        {
+          "local_port": 5180,
+          "remote_port": 5180
+        }
+      ]
+    }
+  ],
+  "cli_default_open_behavior": "new_window",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+    "anthropic_retention": false,
+  },
+
+  // --- Editor ---
+  "vim_mode": true,
+  "vim": {
+    "leader_key": " ",
+  },
+  "relative_line_numbers": true,
+  "cursor_blink": false,
+  "tab_size": 2,
+  "soft_wrap": "none",
+  "show_whitespaces": "selection",
+  "inlay_hints": {
+    "enabled": true,
+  },
+
+  // --- Font & Theme ---
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "buffer_font_family": "Hack Nerd Font",
+  "theme": {
+    "mode": "system",
+    "light": "Gruvbox Light",
+    "dark": "Gruvbox Dark",
+  },
+
+  // --- Agent / MCP ---
+  "agent_servers": {
+    "codex-acp": {
+      "type": "registry",
+    },
+    "github-copilot-cli": {
+      "type": "registry",
+    },
+    "claude-acp": {
+      "default_config_options": {
+        "mode": "auto",
+        "model": "default"
+      },
+      "type": "registry",
+    },
+  },
+}

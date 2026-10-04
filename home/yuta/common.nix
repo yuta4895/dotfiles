@@ -217,6 +217,11 @@
 
   xdg.configFile."wezterm".source = ../../config/wezterm;
 
+  # Zed: symlink individual files so Zed can still write prompts/ and other
+  # generated state into ~/.config/zed/ without polluting the repo.
+  xdg.configFile."zed/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/github.com/yuta4895/dotfiles/config/zed/settings.json";
+  xdg.configFile."zed/keymap.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/github.com/yuta4895/dotfiles/config/zed/keymap.json";
+
   # lazy.nvim writes to the config dir (lazy-lock.json, plugin state), so it must be
   # a mutable out-of-store symlink rather than a read-only nix store path.
   # Requires this repo to be cloned at ~/dev/github.com/yuta4895 (use ghq).

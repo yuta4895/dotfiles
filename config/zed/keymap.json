@@ -1,0 +1,53 @@
+[
+  // --- Insert mode ---
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore",
+    },
+  },
+
+  // --- Normal mode: leader (<space>) bindings ---
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space space": "file_finder::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space /": "pane::DeploySearch",
+      "space ,": "tab_switcher::Toggle",
+      "space e": "workspace::ToggleLeftDock",
+
+      "space s v": "pane::SplitRight",
+      "space s h": "pane::SplitDown",
+
+      "space c a": "editor::ToggleCodeActions",
+      "space c r": "editor::Rename",
+      "g r": "editor::FindAllReferences",
+      "g I": "editor::GoToImplementation",
+
+      "-": "pane::RevealInProjectPanel",
+
+      "space a a": "inline_assistant::ThumbsUpResult",
+      "space a d": "inline_assistant::ThumbsDownResult",
+    },
+  },
+
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "space a s": "agent::AddSelectionToThread",
+      "space a i": "assistant::InlineAssist",
+    },
+  },
+
+  // --- Pane navigation ---
+  {
+    "context": "Pane || Editor",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+    },
+  },
+]
