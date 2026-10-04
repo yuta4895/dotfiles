@@ -23,9 +23,17 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit self inputs; };
-          home-manager.users.yuta = ./home/yuta/home.nix;
+          home-manager.users.yuta = ./home/yuta/personal.nix;
         }
       ];
+    };
+
+    # $ nix run home-manager -- switch --flake .#standalone   (first time)
+    # $ home-manager switch --flake .#standalone
+    homeConfigurations.standalone = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+      extraSpecialArgs = { inherit self inputs; };
+      modules = [ ./home/yuta/standalone.nix ];
     };
   };
 }

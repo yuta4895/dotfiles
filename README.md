@@ -42,6 +42,17 @@ darwin-rebuild build --flake .
 darwin-rebuild switch --flake .#YutaMBP
 ```
 
+Alternatively, without nix-darwin (standalone home-manager — dotfiles and CLI tools only, no casks or language runtimes):
+
+```sh
+# Run this for the first time
+nix run home-manager -- switch --flake .#standalone
+```
+
+```sh
+home-manager switch --flake .#standalone
+```
+
 ## Update inputs
 
 Update all pinned inputs (`nixpkgs`, `nix-darwin`, `home-manager`) to their latest commits, then apply:
