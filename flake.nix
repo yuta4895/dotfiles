@@ -7,11 +7,9 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    herdr.url = "github:herdrdev/herdr/v0.8.2";
-    herdr.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, herdr }: {
+  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager }: {
     # $ darwin-rebuild switch --flake .#YutaMBP
     darwinConfigurations."YutaMBP" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";

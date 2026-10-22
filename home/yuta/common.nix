@@ -17,6 +17,7 @@
     neovim
     ghq
     just
+    herdr
 
     luarocks
 
@@ -226,4 +227,8 @@
   # a mutable out-of-store symlink rather than a read-only nix store path.
   # Requires this repo to be cloned at ~/dev/github.com/yuta4895 (use ghq).
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/github.com/yuta4895/dotfiles/config/nvim";
+
+  # herdr writes logs alongside config.toml and can rewrite it itself
+  # (e.g. `herdr config reset-keys`), so symlink just the file, out-of-store.
+  xdg.configFile."herdr/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/github.com/yuta4895/dotfiles/config/herdr/config.toml";
 }
