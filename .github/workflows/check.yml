@@ -1,0 +1,21 @@
+# Eval both configs on manual pushes/PRs. The weekly flake.lock PR runs its own
+# eval in update-flake-lock.yml.
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  eval:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: NixOS/nix-installer-action@v1
+
+      - name: Eval YutaMBP
+        run: nix eval --raw .#darwinConfigurations.YutaMBP.system.drvPath
+      - name: Eval standalone
+        run: nix eval --raw .#homeConfigurations.standalone.activationPackage.drvPath

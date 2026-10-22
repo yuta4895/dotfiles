@@ -1,0 +1,46 @@
+# Weekly `nix flake update`, opened as a PR only if both configs still evaluate.
+name: update-flake-lock
+
+on:
+  schedule:
+    - cron: "0 0 * * 1" # Mondays 09:00 JST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: NixOS/nix-installer-action@v1
+
+      - name: Update flake.lock
+        run: nix flake update 2>&1 | tee update.log
+
+      - name: Eval YutaMBP
+        run: nix eval --raw .#darwinConfigurations.YutaMBP.system.drvPath
+      - name: Eval standalone
+        run: nix eval --raw .#homeConfigurations.standalone.activationPackage.drvPath
+
+      - name: Build PR body
+        run: |
+          {
+            echo 'Automated `nix flake update`. Both `YutaMBP` and `standalone` evaluate.'
+            echo
+            echo '```'
+            grep -E "^(•|    )" update.log || true
+            echo '```'
+          } > pr-body.md
+          rm update.log
+
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          branch: chore/update-flake-lock
+          delete-branch: true
+          commit-message: "chore: update flake.lock"
+          title: "chore: update flake.lock"
+          body-path: pr-body.md
+          add-paths: flake.lock
