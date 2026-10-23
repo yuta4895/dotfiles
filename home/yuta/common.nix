@@ -154,6 +154,24 @@
     enable = true;
   };
 
+  programs.k9s = {
+    enable = true;
+    settings.k9s = {
+      refreshRate = 2;
+      skipLatestRevCheck = true;
+      noExitOnCtrlC = true;
+      ui = {
+        logoless = true;
+        enableMouse = true;
+      };
+      logger = {
+        tail = 500;
+        buffer = 5000;
+        sinceSeconds = 300;
+      };
+    };
+  };
+
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
