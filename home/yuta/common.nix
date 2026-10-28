@@ -236,6 +236,10 @@
 
   xdg.configFile."wezterm".source = ../../config/wezterm;
 
+  # Ghostty is installed via brew cask (nix-darwin) or manually on standalone
+  # Macs. Out-of-store symlink so config edits apply on reload without a rebuild.
+  xdg.configFile."ghostty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/github.com/yuta4895/dotfiles/config/ghostty";
+
   # Zed: symlink individual files so Zed can still write prompts/ and other
   # generated state into ~/.config/zed/ without polluting the repo.
   xdg.configFile."zed/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/github.com/yuta4895/dotfiles/config/zed/settings.json";

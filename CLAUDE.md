@@ -24,6 +24,7 @@ home/yuta/standalone.nix # standalone home-manager: no nix-darwin, no runtimes
 config/
   tmux/tmux.conf         # sourced via builtins.readFile in common.nix
   wezterm/               # symlinked to ~/.config/wezterm via xdg.configFile
+  ghostty/               # out-of-store symlink to ~/.config/ghostty (app via brew cask)
   nvim/                  # symlinked to ~/.config/nvim via xdg.configFile
 ```
 

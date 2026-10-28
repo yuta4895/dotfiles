@@ -1,0 +1,19 @@
+# Symlinked to ~/.config/ghostty (out-of-store), so edits apply on reload
+# (Cmd+Shift+,) without a rebuild.
+
+# colors (themes/gruvbox)
+theme = gruvbox
+
+# fonts
+font-family = Hack Nerd Font
+font-size = 14
+
+# background
+background-opacity = 1.0
+background-blur = 20
+
+# title bar and tab bar
+macos-titlebar-style = tabs
+
+# key mapping
+keybind = ctrl+shift+n=toggle_fullscreen

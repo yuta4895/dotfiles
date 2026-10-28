@@ -51,6 +51,7 @@
       "zotero"
       "raycast"
       "wezterm"
+      "ghostty"
       "visual-studio-code"
       "intellij-idea"
       "zed"
