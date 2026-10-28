@@ -1,6 +1,10 @@
+onboarding = false
 [keys]
 prefix = "ctrl+s"
 
 [theme]
 name = "gruvbox"
 
+auto_switch = false
+[ui.sound]
+enabled = false
