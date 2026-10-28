@@ -131,19 +131,23 @@
       "--layout reverse"
       "--border top"
     ];
-    fileWidgetCommand = "fd --strip-cwd-prefix --hidden --follow --exclude .git";
-    fileWidgetOptions = [
-      "--walker-skip .git,node_modules,target,venv,build,dist"
-      "--preview 'bat -n --color=always {}'"
-      "--bind 'ctrl-/:change-preview-window(down|hidden|)'"
-    ];
-    changeDirWidgetCommand = "fd --type d --strip-cwd-prefix --hidden --follow --exclude .git";
-    changeDirWidgetOptions = [
-      "--walker-skip .git,node_modules,target,venv,build,dist"
-      "--preview 'tree -C {}'"
-      "--bind 'ctrl-/:change-preview-window(down|hidden|)'"
-    ];
-    historyWidgetOptions = [
+    fileWidget = {
+      command = "fd --strip-cwd-prefix --hidden --follow --exclude .git";
+      options = [
+        "--walker-skip .git,node_modules,target,venv,build,dist"
+        "--preview 'bat -n --color=always {}'"
+        "--bind 'ctrl-/:change-preview-window(down|hidden|)'"
+      ];
+    };
+    changeDirWidget = {
+      command = "fd --type d --strip-cwd-prefix --hidden --follow --exclude .git";
+      options = [
+        "--walker-skip .git,node_modules,target,venv,build,dist"
+        "--preview 'tree -C {}'"
+        "--bind 'ctrl-/:change-preview-window(down|hidden|)'"
+      ];
+    };
+    historyWidget.options = [
       "--bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
       "--color header:italic"
       "--header 'Press CTRL-Y to copy command into clipboard'"
