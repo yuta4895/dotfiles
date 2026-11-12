@@ -100,7 +100,8 @@
       gsw = "git switch";
       gsc = "git switch -c";
       gb  = "git branch";
-      glg = "git log --oneline --graph --decorate --all";
+      glg  = "git log --oneline --graph";
+      glga = "git log --oneline --graph --all";
     };
     profileExtra = ''
       # Apps relaunched by `brew upgrade` inherit brew's internal env; a stale
