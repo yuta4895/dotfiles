@@ -31,7 +31,7 @@ jobs:
             echo 'Automated `nix flake update`. Both `YutaMBP` and `standalone` evaluate.'
             echo
             echo '```'
-            grep -E "^(•|    )" update.log || true
+            grep -E "^(•|    |  →)" update.log || true
             echo '```'
           } > pr-body.md
           rm update.log
