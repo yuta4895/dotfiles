@@ -7,6 +7,7 @@ theme = gruvbox
 # fonts
 # Ghostty only discovers the Mono variant of the Hack Nerd Font cask
 font-family = Hack Nerd Font Mono
+font-family = Hiragino Sans
 font-size = 15
 
 # background
