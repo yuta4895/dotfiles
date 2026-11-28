@@ -1,7 +1,6 @@
 #!/bin/sh
 # Switch Zed to the git checkout of the focused herdr workspace.
-# Runs as a herdr plugin event hook; the herdr server's PATH may be minimal.
-export PATH="/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
+# Runs as a herdr plugin event hook and inherits the herdr server's PATH.
 
 herdr="${HERDR_BIN_PATH:-herdr}"
 
@@ -21,6 +20,13 @@ state_dir="${HERDR_PLUGIN_STATE_DIR:-${TMPDIR:-/tmp}}"
 last_file="$state_dir/last_path"
 [ "$(cat "$last_file" 2>/dev/null)" = "$path" ] && exit 0
 mkdir -p "$state_dir" && printf '%s' "$path" > "$last_file"
+
+# Fresh worktrees have no .venv (it's gitignored). Create it before Zed opens the
+# checkout: Zed persists the first Python toolchain it picks, so opening first
+# would lock in a non-.venv interpreter.
+if [ -f "$path/uv.lock" ] && [ ! -d "$path/.venv" ]; then
+  (cd "$path" && uv sync) || echo "zed-follow: uv sync failed in $path" >&2
+fi
 
 # `zed -e <dir>` activates that project in the existing window's sidebar (adding it if new).
 # Keep keyboard focus on the terminal running herdr.
